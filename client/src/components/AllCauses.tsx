@@ -1,15 +1,21 @@
-// AllCauses.tsx
+import {  useState } from "react";
 import { UseCauseCard } from "./UseCauseCard.tsx";
+import { Link } from "react-router-dom"; // Import Link from react-router-dom
 
 export const AllCauses = () => {
-  // You can create an array of cards to render multiple instances
-  const cardCount = 16; // Number of cards you want to display
+  // Retrieve causes from local storage
+  const [causes] = useState(() => {
+    const storedCauses = localStorage.getItem('causes');
+    return storedCauses ? JSON.parse(storedCauses) : [];
+  });
 
   return (
     <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-4 p-4 ml-60">
-      {Array.from({ length: cardCount }).map((_, index) => (
-        <div key={index} className="flex justify-center">
-          <UseCauseCard />
+      {causes.map((cause:any) => (
+        <div key={cause.id} className="flex justify-center">
+          <Link to={`/ngo/cause/${cause.id}`}> {/* Create a link for each card */}
+            <UseCauseCard title={cause.title} description={cause.description} />
+          </Link>
         </div>
       ))}
     </div>

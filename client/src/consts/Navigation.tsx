@@ -4,7 +4,6 @@ import { IoAdd } from 'react-icons/io5';
 import { IoMdSettings } from "react-icons/io";
 import { IoIosHelpCircleOutline } from "react-icons/io";
 import { MdLogout } from "react-icons/md";
-import { IoPerson } from "react-icons/io5";
 import { FaHome } from "react-icons/fa";
 import { IoSearch } from "react-icons/io5";
 import { IoIosArrowDropdownCircle } from "react-icons/io";
@@ -12,18 +11,7 @@ import { IoIosArrowDropdownCircle } from "react-icons/io";
 
 
 export const NGO_DASHBOARD_SIDEBAR_LINKS = [
-    {
-        key: 'profile',
-        label: 'Profile',
-        path: '/ngo/profile',
-        icon: <IoPerson />
-    },
-    {
-        key: 'ngodashboard',
-        label: 'NGO Dashboard',
-        path: '/ngo',
-        icon: <HiOutlineViewGrid />
-    },
+
     {
         key: 'allcauses',
         label: 'All Causes',

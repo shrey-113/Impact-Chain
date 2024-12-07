@@ -1,6 +1,4 @@
-// src/components/Navbar.tsx
-
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import {
   NavigationMenu,
   NavigationMenuItem,
@@ -17,15 +15,34 @@ import {
 import { Menu } from "lucide-react";
 import { ModeToggle } from "./mode-toggle";
 import { LogoIcon } from "./Icons";
-import CreateWalletButton from './CreateWalletButton'; // Import CreateWalletButton
+import CreateWalletButton from './CreateWalletButton';
+import { connectWallet } from '..//provider';
 
-type NavbarProps = {
-  connectedAddress: string | null;
-  onConnect: () => void;
-};
-
-export const Navbar: React.FC<NavbarProps> = ({ connectedAddress, onConnect }) => {
+export const Navbar: React.FC = () => {
   const [isOpen, setIsOpen] = useState<boolean>(false);
+  const [state, setState] = useState<{ address: string | null }>({ address: null });
+
+  useEffect(() => {
+    const storedAddress = localStorage.getItem('connectedAddress');
+    if (storedAddress) {
+      setState({ address: storedAddress });
+    }
+  }, []);
+
+  const handleConnectWallet = async () => {
+    const address = await connectWallet();
+    if (address) {
+      setState({ address });
+      localStorage.setItem('connectedAddress', address);
+    }
+  };
+
+  const handleDisconnectWallet = () => {
+    setState({ address: null });
+    localStorage.removeItem('connectedAddress');
+  };
+
+  const connectedAddress = state.address;
 
   return (
     <header className="sticky border-b-[1px] top-0 z-40 w-full bg-white dark:border-b-slate-700 dark:bg-background">
@@ -42,7 +59,6 @@ export const Navbar: React.FC<NavbarProps> = ({ connectedAddress, onConnect }) =
             </a>
           </NavigationMenuItem>
 
-          {/* Mobile Navigation */}
           <span className="flex md:hidden">
             <ModeToggle />
             <Sheet open={isOpen} onOpenChange={setIsOpen}>
@@ -64,15 +80,16 @@ export const Navbar: React.FC<NavbarProps> = ({ connectedAddress, onConnect }) =
               </SheetContent>
             </Sheet>
           </span>
-          {/* Desktop Wallet Button and Mode Toggle */}
-          <div className="hidden md:flex items-center gap-4">
-            {/* If no wallet connected, show CreateWalletButton */}
-            {!connectedAddress ? (
-              <CreateWalletButton onConnect={onConnect} />
-            ) : (
-              <div className="text-sm text-gray-500">Connected: {connectedAddress}</div>
-            )}
 
+          <div className="hidden md:flex items-center gap-4">
+            {!connectedAddress ? (
+              <CreateWalletButton onConnect={handleConnectWallet} />
+            ) : (
+              <>
+                <div className="text-sm text-gray-500">Connected: {connectedAddress}</div>
+                <button onClick={handleDisconnectWallet}>Disconnect</button>
+              </>
+            )}
 
             <ModeToggle />
           </div>

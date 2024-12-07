@@ -6,6 +6,7 @@ function App() {
 
   return (
     <>
+      
       <AppRoutes /> {/* Render the routes here */}
     </>
   );

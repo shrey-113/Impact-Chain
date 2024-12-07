@@ -7,7 +7,7 @@ import {
   CardFooter,
   CardHeader,
   CardTitle,
-} from "@/components/ui/card";
+} from "@/components/ui/CauseCard";
 import { Check } from "lucide-react";
 
 enum PopularPlanType {

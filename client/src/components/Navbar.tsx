@@ -14,8 +14,6 @@ import {
   SheetTrigger,
 } from "@/components/ui/sheet";
 
-import { IoIosWallet } from "react-icons/io";
-import { buttonVariants } from "./ui/button";
 import { Menu } from "lucide-react";
 import { ModeToggle } from "./mode-toggle";
 import { LogoIcon } from "./Icons";
@@ -75,15 +73,6 @@ export const Navbar: React.FC<NavbarProps> = ({ connectedAddress, onConnect }) =
               <div className="text-sm text-gray-500">Connected: {connectedAddress}</div>
             )}
 
-            <a
-              rel="noreferrer noopener"
-              href="https://github.com/leoMirandaa/shadcn-landing-page.git"
-              target="_blank"
-              className={`border ${buttonVariants({ variant: "secondary" })} flex items-center gap-2`}
-            >
-              <IoIosWallet className="mr-2 w-5 h-5" />
-              Wallet
-            </a>
 
             <ModeToggle />
           </div>

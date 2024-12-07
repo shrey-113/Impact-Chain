@@ -1,12 +1,9 @@
-import { Hero } from "./components/Hero";
-import { Navbar } from "./components/Navbar";
-import "./App.css";
+import AppRoutes from "./routes"; // Import your routes
 
 function App() {
   return (
     <>
-      <Navbar />
-      <Hero />
+      <AppRoutes /> {/* Render the routes here */}
     </>
   );
 }

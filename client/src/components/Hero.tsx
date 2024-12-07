@@ -1,9 +1,13 @@
 import { Button } from "./ui/button";
 import Globe from '../assets/globe.png'
+import {Navbar} from './Navbar.tsx'
 
 export const Hero = () => {
   return (
-    <section className="container grid lg:grid-cols-2 place-items-center py-20 md:py-32 gap-10">
+
+    <>  
+    <Navbar/>
+    <section className="container grid lg:grid-cols-2 place-items-center py-20 md:py-32 gap-10 pl-40">
       <div className="text-center lg:text-start space-y-6">
         <main className="text-5xl md:text-6xl font-bold">
           <h1 className="inline">
@@ -43,5 +47,6 @@ export const Hero = () => {
       {/* Shadow effect */}
       <div className="shadow"></div>
     </section>
+    </>
   );
 };

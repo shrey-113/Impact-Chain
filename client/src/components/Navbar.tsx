@@ -66,7 +66,7 @@ export const Navbar = () => {
             </Sheet>
           </span>
 
-          <CreateWalletButton></CreateWalletButton>
+          {/* <CreateWalletButton></CreateWalletButton> */}
           
 
           <div className="hidden md:flex gap-2">

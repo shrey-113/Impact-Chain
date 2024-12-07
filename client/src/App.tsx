@@ -1,6 +1,9 @@
-import AppRoutes from "./routes"; // Import your routes
+import AppRoutes from "./routes";
+// src/App.tsx
+
 
 function App() {
+
   return (
     <>
       <AppRoutes /> {/* Render the routes here */}

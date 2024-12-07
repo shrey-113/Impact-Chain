@@ -1,12 +1,28 @@
 import { Button } from "./ui/button";
 import Globe from '../assets/globe.png'
 import {Navbar} from './Navbar.tsx'
+import { connectWallet } from '..//provider'; // Assuming this handles the wallet connection
+import { useState } from "react";
+
+type AppState = {
+  address: string | null;
+};
 
 export const Hero = () => {
+  const [state, setState] = useState<AppState>({ address: null });
+
+  const handleConnectWallet = async () => {
+    const address = await connectWallet();
+    if (address) {
+      setState({ address }); // Store the connected address in state
+    }
+  };
+
+
   return (
 
     <>  
-    <Navbar/>
+    <Navbar connectedAddress={state.address} onConnect={handleConnectWallet} />
     <section className="container grid lg:grid-cols-2 place-items-center py-20 md:py-32 gap-10 pl-40">
       <div className="text-center lg:text-start space-y-6">
         <main className="text-5xl md:text-6xl font-bold">

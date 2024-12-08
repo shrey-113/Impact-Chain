@@ -18,8 +18,9 @@ export const Validate = () => {
       .catch((error) => console.error("Error fetching causes:", error));
   }, []);
 
-  // State to track validation
+  // State to track validation and refutation
   const [validatedCauses, setValidatedCauses] = useState<{ [key: number]: boolean }>({});
+  const [refutedCauses, setRefutedCauses] = useState<{ [key: number]: boolean }>({});
 
   const handleThumbsUp = (id: number) => {
     // Show confirmation alert
@@ -31,7 +32,12 @@ export const Validate = () => {
   };
 
   const handleThumbsDown = (id: number) => {
-    alert("You have declined to validate this cause.");
+    // Show confirmation alert
+    const confirmed = window.confirm("You are about to refute this cause. Do you want to proceed?");
+    if (confirmed) {
+      setRefutedCauses((prev) => ({ ...prev, [id]: true }));
+      alert("You have refuted this cause.");
+    }
   };
 
   return (
@@ -45,23 +51,30 @@ export const Validate = () => {
             Download Data
           </button>
           <div className="flex mt-2">
-            <button
-              onClick={() => handleThumbsUp(cause.id)}
-              className="bg-white text-black hover:bg-gray-200 font-semibold py-2 px-4 rounded mr-2 flex items-center"
-            >
-              <span className="mr-1">👍</span> {/* Thumbs up icon */}
-              Validate
-            </button>
-            <button
-              onClick={() => handleThumbsDown(cause.id)}
-              className="bg-white text-black hover:bg-gray-200 font-semibold py-2 px-4 rounded flex items-center"
-            >
-              <span className="mr-1">👎</span> {/* Thumbs down icon */}
-              Refute
-            </button>
+            {!validatedCauses[cause.id] && !refutedCauses[cause.id] && (
+              <>
+                <button
+                  onClick={() => handleThumbsUp(cause.id)}
+                  className="bg-white text-black hover:bg-gray-200 font-semibold py-2 px-4 rounded mr-2 flex items-center"
+                >
+                  <span className="mr-1">👍</span> {/* Thumbs up icon */}
+                  Validate
+                </button>
+                <button
+                  onClick={() => handleThumbsDown(cause.id)}
+                  className="bg-white text-black hover:bg-gray-200 font-semibold py-2 px-4 rounded flex items-center"
+                >
+                  <span className="mr-1">👎</span> {/* Thumbs down icon */}
+                  Refute
+                </button>
+              </>
+            )}
           </div>
           {validatedCauses[cause.id] && (
             <span className="mt-2 text-green-500">Validated</span>
+          )}
+          {refutedCauses[cause.id] && (
+            <span className="mt-2 text-red-500">Refuted</span>
           )}
         </div>
       ))}

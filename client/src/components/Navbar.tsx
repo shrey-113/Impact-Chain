@@ -1,4 +1,5 @@
-import { useState, useEffect } from "react";
+import { useState } from "react";
+import { Link } from 'react-router-dom';
 import {
   NavigationMenu,
   NavigationMenuItem,
@@ -21,13 +22,6 @@ import { connectWallet } from '..//provider';
 export const Navbar: React.FC = () => {
   const [isOpen, setIsOpen] = useState<boolean>(false);
   const [state, setState] = useState<{ address: string | null }>({ address: null });
-
-  useEffect(() => {
-    const storedAddress = localStorage.getItem('connectedAddress');
-    if (storedAddress) {
-      setState({ address: storedAddress });
-    }
-  }, []);
 
   const handleConnectWallet = async () => {
     const address = await connectWallet();
@@ -87,7 +81,9 @@ export const Navbar: React.FC = () => {
             ) : (
               <>
                 <div className="text-sm text-gray-500">Connected: {connectedAddress}</div>
-                <button onClick={handleDisconnectWallet}>Disconnect</button>
+                <Link to="/">
+                  <button onClick={handleDisconnectWallet}>Disconnect</button>
+                </Link>
               </>
             )}
 

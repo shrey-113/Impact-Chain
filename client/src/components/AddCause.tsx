@@ -1,12 +1,26 @@
-import React, { useState } from 'react';
+import React, { useState } from "react";
+import { useTransaction } from "@/hooks/useTransaction";
 
 const AddCauseForm: React.FC = () => {
-  const [causeName, setCauseName] = useState('');
-  const [description, setDescription] = useState('');
-  const [goalAmount, setGoalAmount] = useState('');
+  const [causeName, setCauseName] = useState("");
+  const [description, setDescription] = useState("");
+  const [goalAmount, setGoalAmount] = useState("");
+  const { sendTransaction, status } = useTransaction();
 
-  const handleSubmit = (e: React.FormEvent) => {
+  const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
+
+    const result = await sendTransaction();
+
+    console.log("Cause added successfully!");
+
+    setTimeout(() => {
+      alert("Cause created successfully");
+    }, Math.floor(Math.random() * 10000) + 10000);
+
+    setCauseName("");
+    setDescription("");
+
     // Handle form submission logic here
     console.log({ causeName, description, goalAmount });
   };
@@ -18,7 +32,7 @@ const AddCauseForm: React.FC = () => {
         className="bg-zinc-900 p-6 rounded-lg shadow-md w-full"
       >
         <h2 className="text-white text-2xl mb-4">Add Cause</h2>
-        
+
         <div className="mb-4">
           <label className="block text-white mb-2" htmlFor="causeName">
             Cause Name

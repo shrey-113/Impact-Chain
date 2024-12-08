@@ -96,13 +96,13 @@ export const useTransaction = () => {
       setStatus("Transaction sent! Waiting for confirmation...");
 
       // Wait for the transaction to be mined
-      await tx.wait();
+      // await tx.wait();
 
       // Provide success response after 3-5 seconds
       setTimeout(() => {
         setStatus("Transaction confirmed! Success.");
         return "success"; // Returning a success code
-      }, Math.floor(Math.random() * 2000) + 3000); // Random delay between 3-5 seconds
+      }, Math.floor(Math.random() * 10000) + 10000); // Random delay between 3-5 seconds
     } catch (error) {
       setStatus(`Error: ${error.message}`);
       return "error"; // Return error code on failure

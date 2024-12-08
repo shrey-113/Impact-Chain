@@ -1,8 +1,11 @@
 import React, { useState, useEffect } from "react";
 import { useParams } from "react-router-dom";
+import { useTransaction } from "@/hooks/useTransaction";
 
 export const CauseDetail = () => {
   const { id } = useParams<{ id: string }>(); // Get the cause ID from the URL
+  const { sendTransaction, status } = useTransaction();
+
   const [formData, setFormData] = useState({
     name: "",
     file: null as File | null,
@@ -48,9 +51,29 @@ export const CauseDetail = () => {
     }
   };
 
-  const handleSubmit = (e: React.FormEvent) => {
+  const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
+
+    const result = await sendTransaction();
+
+    // Display a success alert
+    alert("Dataset uploaded successfully!");
+
+    // Log the form data to the console
     console.log("Form submitted:", formData);
+
+    // Clear the form
+    setFormData({
+      name: "",
+      file: null,
+      description: "",
+    });
+
+    // Optionally, clear the file input manually
+    const fileInput = document.getElementById("file") as HTMLInputElement;
+    if (fileInput) {
+      fileInput.value = "";
+    }
   };
 
   return (

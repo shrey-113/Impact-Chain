@@ -4,6 +4,8 @@ import { MdLogout } from "react-icons/md";
 import { IoSearch } from "react-icons/io5";
 import { IoIosArrowDropdownCircle } from "react-icons/io";
 import { MdAdd } from "react-icons/md";
+import { BiSolidDonateHeart } from "react-icons/bi";
+
 
 
 
@@ -42,6 +44,12 @@ export const CONTRIBUTOR_DASHBOARD_SIDEBAR_LINKS = [
         label: 'Add Cause',
         path: '/contributor/addcause',
         icon: <MdAdd />
+    },
+    {
+        key: 'donate',
+        label: 'donate',
+        path: '/contributor/donate',
+        icon: <BiSolidDonateHeart />
     },
 ];
 

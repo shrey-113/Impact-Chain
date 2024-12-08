@@ -9,6 +9,7 @@ import AddCauseForm from "./components/AddCause";
 import { AllCausesContributor } from "./components/AllCausesContributor";
 import { MyCauses } from "./components/MyCauses";
 import { MyCausesContributor } from "./components/MyCausesContributor";
+import { Donate } from "./components/Donate";
 const AppRoutes: React.FC = () => {
   return (
     <Routes>
@@ -27,6 +28,7 @@ const AppRoutes: React.FC = () => {
         <Route path="allcauses" element={<AllCausesContributor />} />
         <Route path="mycauses" element={<MyCausesContributor />} />
         <Route path="addcause" element={<AddCauseForm />} />
+        <Route path="donate" element={<Donate />} />
         {/* <Route path="cause/:id" element={<CauseDetailContributor />} /> New route for cause details */}
       </Route>
     </Routes>

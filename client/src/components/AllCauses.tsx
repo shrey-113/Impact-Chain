@@ -13,6 +13,7 @@ export const AllCauses = () => {
         if (!response.ok) {
           throw new Error("Failed to fetch causes");
         }
+        localStorage.setItem("causes", JSON.stringify(response));
         return response.json();
       })
       .then((data) => setCauses(data))

@@ -111,3 +111,22 @@ export const useTransaction = () => {
 
   return { sendTransaction, status };
 };
+
+/*
+USAGE
+
+  const { sendTransaction, status } = useTransaction();
+
+    const handleTransaction = async () => {
+    // Call sendTransaction when the button is clicked
+    const result = await sendTransaction();
+
+    // Optional: You can also use the result from sendTransaction (success/error)
+    console.log("Transaction result: ", result);
+  };
+
+
+  <Button className="w-full md:w-1/3" onClick={handleTransaction}>
+              Transact
+            </Button>
+*/

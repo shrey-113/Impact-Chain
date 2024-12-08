@@ -1,12 +1,10 @@
-import { TbSolarPanel2 } from 'react-icons/tb';
-import { HiOutlineViewGrid } from 'react-icons/hi';
-import { IoAdd } from 'react-icons/io5';
 import { IoMdSettings } from "react-icons/io";
 import { IoIosHelpCircleOutline } from "react-icons/io";
 import { MdLogout } from "react-icons/md";
-import { FaHome } from "react-icons/fa";
 import { IoSearch } from "react-icons/io5";
 import { IoIosArrowDropdownCircle } from "react-icons/io";
+import { MdAdd } from "react-icons/md";
+
 
 
 
@@ -28,32 +26,26 @@ export const NGO_DASHBOARD_SIDEBAR_LINKS = [
 
 export const CONTRIBUTOR_DASHBOARD_SIDEBAR_LINKS = [
     {
-        key: 'home',
-        label: 'Home',
-        path: '/',
-        icon: <FaHome />
+        key: 'allcauses',
+        label: 'All Causes',
+        path: '/contributor/allcauses',
+        icon: <IoSearch />
     },
     {
-        key: 'contributordashboard',
-        label: 'Contributor Dashboard',
-        path: '/contributor/dashboard',
-        icon: <HiOutlineViewGrid />
+        key: 'mycauses',
+        label: 'My Causes',
+        path: '/contributor/mycauses',
+        icon: <IoIosArrowDropdownCircle />
     },
     {
-        key: 'farms',
-        label: 'Farms',
-        path: '/farms',
-        icon: <TbSolarPanel2 />
-    },
-    {
-        key: 'createfarms',
-        label: 'Create Farms',
-        path: '/createfarms',
-        icon: <IoAdd />
+        key: 'addcause',
+        label: 'Add Cause',
+        path: '/contributor/addcause',
+        icon: <MdAdd />
     },
 ];
 
-export const DASHBOARD_SIDEBAR_LINKS_BOTTOM = [
+export const CONTRIBUTOR_DASHBOARD_SIDEBAR_LINKS_BOTTOM = [
     {
         key: 'settings',
         label: 'Settings',

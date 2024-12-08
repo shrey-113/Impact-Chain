@@ -1,4 +1,4 @@
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import { Link } from 'react-router-dom';
 import {
   NavigationMenu,
@@ -22,6 +22,14 @@ import { connectWallet } from '..//provider';
 export const Navbar: React.FC = () => {
   const [isOpen, setIsOpen] = useState<boolean>(false);
   const [state, setState] = useState<{ address: string | null }>({ address: null });
+
+  // Check for a previously connected wallet address in local storage
+  useEffect(() => {
+    const storedAddress = localStorage.getItem('connectedAddress');
+    if (storedAddress) {
+      setState({ address: storedAddress });
+    }
+  }, []);
 
   const handleConnectWallet = async () => {
     const address = await connectWallet();

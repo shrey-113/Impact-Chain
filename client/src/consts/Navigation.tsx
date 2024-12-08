@@ -5,6 +5,8 @@ import { IoSearch } from "react-icons/io5";
 import { IoIosArrowDropdownCircle } from "react-icons/io";
 import { MdAdd } from "react-icons/md";
 import { BiSolidDonateHeart } from "react-icons/bi";
+import { GrValidate } from "react-icons/gr";
+
 
 
 
@@ -47,9 +49,15 @@ export const CONTRIBUTOR_DASHBOARD_SIDEBAR_LINKS = [
     },
     {
         key: 'donate',
-        label: 'donate',
+        label: 'Donate',
         path: '/contributor/donate',
         icon: <BiSolidDonateHeart />
+    },
+    {
+        key: 'validate',
+        label: 'Validate',
+        path: '/contributor/validate',
+        icon: <GrValidate />
     },
 ];
 

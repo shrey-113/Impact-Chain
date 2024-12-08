@@ -22,7 +22,11 @@ export const Donate = () => {
   const [donatedCauses, setDonatedCauses] = useState<{ [key: number]: boolean }>({});
 
   const handleDonate = (id: number) => {
-    setDonatedCauses((prev) => ({ ...prev, [id]: true }));
+    // Show confirmation popup
+    const confirmed = window.confirm("You are about to stake 1 governance token for validation. Do you want to proceed?");
+    if (confirmed) {
+      setDonatedCauses((prev) => ({ ...prev, [id]: true }));
+    }
   };
 
   return (
